@@ -1,0 +1,77 @@
+#message{
+	text-align:center;
+	color:#666666;
+	font-size:13px;
+	line-height:45px;
+}
+
+#upload{
+	position:fixed;
+	bottom:5px;
+	right:10px;
+	border-radius:5px;
+	overflow:hidden;
+	z-index:999;
+}
+.uploadOption{
+	padding:5px;
+	font-family:黑体;
+	font-size:16px;
+	color:white;
+	background-color:#00B7EE;
+	cursor:pointer;
+	transition:0.5s;
+}
+.uploadOption:hover{
+	background-color:#00A2D4;
+}
+.uploadOption span{
+	vertical-align:top;
+}
+.uploadOption>label{
+	cursor:pointer;
+}
+
+#uploadControl{
+	display:none;
+}
+
+#uploadCanvas{
+	display:flex;
+	flex-wrap:wrap;
+	width:90%;
+	margin:0 auto;
+}
+.uploadItem{
+	flex-shrink:0;
+	box-sizing:border-box;
+	padding:0 10px;
+	width:25%;
+	height:323px;
+	margin-bottom:5px;
+	border-radius:5px;
+	overflow:hidden;
+}
+.itemPreview{
+	width:100%;
+	height:100%;
+	background-size:cover;
+	text-align:right;
+    background-position:center;
+}
+.remove{
+	color:red;
+	font-size:18px;
+	cursor:pointer;
+}
+
+@media(max-width:768px){
+	#uploadCanvas{
+		width:100%;
+	}
+	.uploadItem{
+		width:50%;
+		height:200px;
+		padding:0 5px;
+	}
+}
