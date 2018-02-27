@@ -41,7 +41,7 @@
 			</div>
 			<div id="waringContent">
 				<p>
-					哦豁，出错了
+					{{title}}
 				</p>
 				<p>
 					{{waring}}
@@ -63,12 +63,21 @@
 				isClick:false,
 				waring:"警告信息",
 				isError:false,
+				title:"",
 				fileInput:""
 			}
 		},
 		methods:{
 			upload(){
-				console.log(this.imageArray);
+				console.log(this.imageArray.length);
+				this.isError=true;
+				if(this.imageArray.length==0){
+					this.title="哦豁，出错了";
+					this.waring="至少选择一张图片";
+				}else{
+					this.title="上传成功";
+					this.waring="共上传"+this.number+"张照片";
+				}
 			},
 			fileChange(event){
 				let file=event.target.files;
@@ -78,6 +87,7 @@
 					//防止用户强行选择其他文件
 					if(file[n].type.split("/")[0]!="image"){
 						this.isError=true;
+						this.title="哦豁，出错了";
 						this.waring="请选择图片类型文件";
 						break;
 					}else{
@@ -88,6 +98,7 @@
 						//设置最大上传大小
 						if(this.size>parseInt(this.max)){
 							this.isError=true;
+							this.title="哦豁，出错了";
 							this.waring="超过容量上限";
 							this.size-=itemSize;
 							break;
