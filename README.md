@@ -23,6 +23,9 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 # 项目说明
 一个多图上传组件
 
+# 线上地址
+[figure.wopelo.la](http://figure.wopelo.la)
+
 # 目录说明
 
 ## api
