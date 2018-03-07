@@ -81,6 +81,7 @@
 			},
 			fileChange(event){
 				let file=event.target.files;
+				//获取元素方便清空
 				this.fileInput=event.target;
 				for(let n=0;n<file.length;n++){
 					console.log(file[n]);
@@ -91,7 +92,6 @@
 						this.waring="请选择图片类型文件";
 						break;
 					}else{
-						//以key:value形式，将图片存到FormData中
 						this.number++;
 						let itemSize=parseInt((file[n].size/1024));
 						this.size+=itemSize;
@@ -123,6 +123,7 @@
 				console.log(id);
 				for(let n=0;n<this.imageArray.length;n++){
 					if(this.imageArray[n].id==id){
+						this.number--;
 						this.size-=this.imageArray[n].size;
 						this.imageArray.splice(n,1);
 					}
