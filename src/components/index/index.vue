@@ -70,36 +70,51 @@
 		methods:{
 			upload(){
 				console.log(this.imageArray.length);
-				this.isError=true;
-				if(this.imageArray.length==0){
-					this.title="哦豁，出错了";
-					this.waring="至少选择一张图片";
+				this.isError = true;
+				if(this.imageArray.length == 0){
+					this.title = "哦豁，出错了";
+					this.waring = "至少选择一张图片";
 				}else{
-					this.title="上传成功";
-					this.waring="共上传"+this.number+"张照片";
+					this.$axios({
+						method:"post",
+						url:"/api/save",
+						data:{
+							image:this.imageArray
+						}
+					}).then((res)=>{
+						this.title = "上传成功";
+						this.waring = "共上传"+this.number+"张照片";
+						this.imageArray = [];
+						this.clear();
+					}).catch((err)=>{
+						this.title = "上传失败";
+						this.waring = "发生了错误，上传失败";
+						this.imageArray = [];
+						this.clear();
+					})
 				}
 			},
 			fileChange(event){
-				let file=event.target.files;
-				this.fileInput=event.target;
+				let file = event.target.files;
+				this.fileInput = event.target;
 				for(let n=0;n<file.length;n++){
 					console.log(file[n]);
 					//防止用户强行选择其他文件
 					if(file[n].type.split("/")[0]!="image"){
-						this.isError=true;
-						this.title="哦豁，出错了";
-						this.waring="请选择图片类型文件";
+						this.isError = true;
+						this.title = "哦豁，出错了";
+						this.waring = "请选择图片类型文件";
 						break;
 					}else{
 						//以key:value形式，将图片存到FormData中
 						this.number++;
-						let itemSize=parseInt((file[n].size/1024));
+						let itemSize = parseInt((file[n].size/1024));
 						this.size+=itemSize;
 						//设置最大上传大小
 						if(this.size>parseInt(this.max)){
-							this.isError=true;
-							this.title="哦豁，出错了";
-							this.waring="超过容量上限";
+							this.isError = true;
+							this.title = "哦豁，出错了";
+							this.waring = "超过容量上限";
 							this.size-=itemSize;
 							break;
 						}
@@ -110,8 +125,8 @@
 				this.clear();
 			},
 			preview(file){
-				let reader=new FileReader();
-				let id=file.name.split(".")[0];
+				let reader = new FileReader();
+				let id = file.name.split(".")[0];
 				reader.onloadend=()=>{
 				    let dataURL=reader.result;
 					this.imageArray.push({"dataURL":dataURL,"id":id,"size":parseInt((file.size/1024))});
@@ -122,7 +137,7 @@
 			remove(id){
 				console.log(id);
 				for(let n=0;n<this.imageArray.length;n++){
-					if(this.imageArray[n].id==id){
+					if(this.imageArray[n].id == id){
 						this.size-=this.imageArray[n].size;
 						this.imageArray.splice(n,1);
 					}
@@ -131,7 +146,7 @@
 			},
 			//允许重复选择相同的文件
 			clear(){
-				this.fileInput.value="";
+				this.fileInput.value = "";
 			}
 		}
 	}

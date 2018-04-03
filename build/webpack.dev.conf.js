@@ -10,6 +10,13 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
 
+//后台api
+const express = require('express');
+const bodyParser = require("body-parser");
+const app = express();
+const apiRoutes = express.Router();
+app.use('/api',apiRoutes);
+
 const HOST = process.env.HOST
 const PORT = process.env.PORT && Number(process.env.PORT)
 
@@ -42,6 +49,13 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     quiet: true, // necessary for FriendlyErrorsPlugin
     watchOptions: {
       poll: config.dev.poll,
+    },
+    before(app){
+      //保存图片
+      app.post("/api/save",bodyParser.json({limit: '10mb'}),function(req,res){
+        let save=require("../api/save.js");
+        save(req.body.image,res);
+      })
     }
   },
   plugins: [
