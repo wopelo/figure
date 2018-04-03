@@ -48,3 +48,6 @@ npm run build
 
 # 运行打包好的项目 端口81
 node prod.server.js
+
+# 完整项目
+master分支中仅实现了图片选择、预览、删除功能，complete分支实现了图片上传到后端并保存，具体信息请查看complete分支的README.md文件
