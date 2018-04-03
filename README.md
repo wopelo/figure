@@ -18,4 +18,7 @@ npm run build
 npm run build --report
 ```
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+# 分支说明
+这个分支实现了上传总大小在10mb以内的多张图片并，保存路径为根目录下的image文件夹，这个文件夹需要在clone之后手动创建，否则保存图片时会找不到相应路径。
+实现图片保存的文件在api/save.js中
+设置express能接受的请求数据大小的代码在build/webpack.dev.conf.js的第55行
