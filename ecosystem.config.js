@@ -23,7 +23,7 @@ module.exports = {
       host : '123.207.156.15',
       key: '../ssh',
       ssh_options: 'StrictHostKeyChecking=no',
-      ref  : 'origin/master',
+      ref  : 'origin/complete',
       repo : 'git@github.com:wopelo/figure.git',
       path : '~/node_work/figure_pm2',
       'post-deploy' : 'git pull && pm2 startOrRestart ecosystem.config.js --env production'
