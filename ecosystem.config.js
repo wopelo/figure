@@ -26,7 +26,7 @@ module.exports = {
       ref  : 'origin/master',
       repo : 'git@github.com:wopelo/figure.git',
       path : '~/node_work/figure_pm2',
-      'post-deploy' : 'git pull && pm2 startOrRestart ./ecosystem.config.js --env production'
+      'post-deploy' : 'git pull && pm2 startOrRestart ecosystem.config.js --env production'
     }
   }
 };
